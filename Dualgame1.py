@@ -5,7 +5,6 @@ import os
 import threading
 import socket
 
-
 # Address host.
 HOST = '192.168.33.1'
 PORT = 55555
