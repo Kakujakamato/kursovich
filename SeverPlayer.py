@@ -114,17 +114,9 @@ def restart():
             Broad[y][x] = 0
 
 
-def askforreplay(playing, game_over, running):
-    print('Press Space to continute')
-    running = True
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_SPACE and game_over:
-            game_over = False
-            playing = 'True'
-            restart()
-        elif event.key == pygame.K_ESCAPE:
-            running = False
-    return (playing, game_over, running)
+
+    
+   
 
 
 while running:
@@ -136,12 +128,24 @@ while running:
                 game_over = True
                 playing = 'False'
                 print('player1 win')
-                askforreplay(playing, game_over, running) = playing, game_over, running
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE and game_over:
+                        game_over = False
+                        playing = 'True'
+                        restart()
+                    elif event.key == pygame.K_ESCAPE:
+                        running = False
             if check_win(2):
                 game_over = True
                 playing = 'False'
                 print('player2 win')
-                askforreplay(playing, game_over, running) = playing, game_over, running
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE and game_over:
+                        game_over = False
+                        playing = 'True'
+                        restart()
+                    elif event.key == pygame.K_ESCAPE:
+                        running = False
             if pygame.mouse.get_pressed()[0]:
                 if turn and (playing == 'True'):
                     pos = pygame.mouse.get_pos()
@@ -157,11 +161,23 @@ while running:
                             game_over = True
                             playing = 'False'
                             print('player1 win')
-                            askforreplay(playing, game_over, running) = playing, game_over, running
+                            if event.type == pygame.KEYDOWN:
+                                if event.key == pygame.K_SPACE and game_over:
+                                    game_over = False
+                                    playing = 'True'
+                                    restart()
+                                elif event.key == pygame.K_ESCAPE:
+                                    running = False
                         if check_win(2):
                             game_over = True
                             playing = 'False'
                             print('player2 win')
-                            askforreplay(playing, game_over, running) = playing, game_over, running
+                            if event.type == pygame.KEYDOWN:
+                                if event.key == pygame.K_SPACE and game_over:
+                                    game_over = False
+                                    playing = 'True'
+                                    restart()
+                                elif event.key == pygame.K_ESCAPE:
+                                    running = False
 
     pygame.display.update()
