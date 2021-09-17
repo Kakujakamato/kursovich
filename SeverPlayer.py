@@ -5,8 +5,8 @@ import threading
 import socket
 
 
-# Address host.
-HOST = '192.168.33.1'
+
+HOST = '192.168.33.1' # Address host.
 PORT = 55555
 BG_COLOR = (30, 145, 150)
 BROAD_COL = 4
