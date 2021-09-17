@@ -28,8 +28,6 @@ turn = True
 playing = 'True'
 
 
-
-
 def create_thread(target):
     thread = threading.Thread(target=target)
     thread.daemon = True
@@ -118,6 +116,7 @@ def restart():
 
 def askforreplay(playing, game_over, running):
     print('Press Space to continute')
+    running = True
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_SPACE and game_over:
             game_over = False
@@ -125,7 +124,7 @@ def askforreplay(playing, game_over, running):
             restart()
         elif event.key == pygame.K_ESCAPE:
             running = False
-    return (game_over,playing,running)
+    return (playing, game_over, running)
 
 
 while running:
@@ -137,12 +136,12 @@ while running:
                 game_over = True
                 playing = 'False'
                 print('player1 win')
-                askforreplay(playing, game_over, running) = playing,game_over,running
+                askforreplay(playing, game_over, running) = playing, game_over, running
             if check_win(2):
                 game_over = True
                 playing = 'False'
                 print('player2 win')
-                askforreplay(playing, game_over, running) = playing,game_over,running
+                askforreplay(playing, game_over, running) = playing, game_over, running
             if pygame.mouse.get_pressed()[0]:
                 if turn and (playing == 'True'):
                     pos = pygame.mouse.get_pos()
@@ -158,11 +157,11 @@ while running:
                             game_over = True
                             playing = 'False'
                             print('player1 win')
-                            askforreplay(playing, game_over, running) = playing,game_over,running
+                            askforreplay(playing, game_over, running) = playing, game_over, running
                         if check_win(2):
                             game_over = True
                             playing = 'False'
                             print('player2 win')
-                            askforreplay(playing, game_over, running) = playing,game_over,running
+                            askforreplay(playing, game_over, running) = playing, game_over, running
 
     pygame.display.update()
