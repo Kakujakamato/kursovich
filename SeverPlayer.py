@@ -132,11 +132,11 @@ while running:
             if check_win(1):
                 game_over = True
                 playing = 'False'
-                key = str(input('player1 win\n Press space to continute'))
+                print('player1 win\n Press space to continute')
             if check_win(2):
                 game_over = True
                 playing = 'False'
-                key = str(input('player2 win\n Press space to continute'))
+                print('player2 win\n Press space to continute')
             if pygame.mouse.get_pressed()[0]:
                 if turn and (playing == 'True'):
                     pos = pygame.mouse.get_pos()
@@ -147,17 +147,10 @@ while running:
                         send_data = '{}-{}-{}-{}'.format(cellX, cellY, 'yourturn', playing).encode()
                         conn.send(send_data)
                         turn = False
-                        if check_win(1):
-                            game_over = True
-                            playing = 'False'
-                            key = str(input('player1 win\n Press space to continute'))
-                        if check_win(2):
-                            game_over = True
-                            playing = 'False'
-                            key = str(input('player2 win\n Press space to continute'))
         if event.type == pygame.KEYDOWN:
-            if event.type == pygame.key and game_over:
+            if event.key == pygame.K_SPACE and game_over:
+                restart()
                 game_over = False
                 playing = 'True'
-                restart()
+                
     pygame.display.update()

@@ -111,15 +111,15 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        elif event.type == pygame.MOUSEBUTTONDOWN and not game_over:
+        if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
             if check_win(2):
                 game_over = True
                 playing = 'False'
-                key = str(input('player2 win\n Press space to continute'))
+                print('player2 win\n Press space to continute')
             if check_win(1):
                 game_over = True
                 playing = 'False'
-                key = str(input('player2 win\n Press space to continute'))
+                print('player1 win\n Press space to continute')
             if pygame.mouse.get_pressed()[0]:
                 if turn and (playing == 'True'):
                     pos = pygame.mouse.get_pos()
@@ -127,21 +127,12 @@ while running:
                     if Broad[cellY][cellX] == 0:
                         Broad[cellY][cellX] = player
                         screen.blit(letterO, (cellX*100, cellY*100))
-                        send_data = '{}-{}-{}-{}'.format(
-                            cellX, cellY, 'yourturn', playing).encode()
+                        send_data = '{}-{}-{}-{}'.format(cellX, cellY, 'yourturn', playing).encode()
                         sock.send(send_data)
                         turn = False
-                        if check_win(2):
-                            game_over = True
-                            playing = 'False'
-                            key = str(input('player2 win\n Press space to continute'))
-                        if check_win(1):
-                            game_over = True
-                            playing = 'False'
-                            key = str(input('player1 win\n Press space to continute'))
         if event.type == pygame.KEYDOWN:
-            if event.type == pygame.key and game_over:
+            if event.key == pygame.K_SPACE and game_over:
+                restart()
                 game_over = False
                 playing = 'True'
-                restart()
     pygame.display.update()
