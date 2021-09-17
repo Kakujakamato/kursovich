@@ -108,7 +108,7 @@ def restart():
             Broad[y][x] = 0
 
 
-def askforreplay(playing, game_over, running):
+def askforreplay(game_over):
     print('Press Space to continute')
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_SPACE and game_over:
