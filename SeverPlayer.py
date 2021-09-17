@@ -4,8 +4,7 @@ import os
 import threading
 import socket
 
-
-
+#constant
 HOST = '192.168.33.1' # Address host.
 PORT = 55555
 BG_COLOR = (30, 145, 150)
