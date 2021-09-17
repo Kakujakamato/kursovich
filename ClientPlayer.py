@@ -57,8 +57,8 @@ def receive_data():
 create_thread(receive_data)
 
 
-letterX = pygame.image.load(os.path.join('res1', 'letterx.png'))
-letterO = pygame.image.load(os.path.join('res1', 'lettero.png'))
+letterX = pygame.image.load(os.path.join('Imgfile', 'letterx.png'))
+letterO = pygame.image.load(os.path.join('Imgfile', 'lettero.png'))
 
 screen = pygame.display.set_mode((400, 400))
 pygame.display.set_caption("Game client")
