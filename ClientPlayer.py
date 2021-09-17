@@ -126,13 +126,13 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
             if check_win(2):
                 game_over = True
-                print('player2 win')
                 playing = 'False'
+                print('player2 win')
                 askforreplay(playing, game_over, running)
             if check_win(1):
                 game_over = True
-                print('player1 win')
                 playing = 'False'
+                print('player1 win')
                 askforreplay(playing, game_over, running)
             if pygame.mouse.get_pressed()[0]:
                 if turn and (playing == 'True'):
@@ -147,12 +147,12 @@ while running:
                         turn = False
                         if check_win(2):
                             game_over = True
-                            print('player2 win')
                             playing = 'False'
+                            print('player2 win')
                             askforreplay(playing, game_over, running)
                         if check_win(1):
                             game_over = True
-                            print('player1 win')
                             playing = 'False'
+                            print('player1 win')
                             askforreplay(playing, game_over, running)
     pygame.display.update()
