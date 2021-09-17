@@ -16,6 +16,7 @@ POSITION_Y_ON_BROAD = 100
 THIN_LEVER_OF_LINES = 2
 START_POSITION = 0
 END_POSITION = 400
+COUNT_DOWN_TIME = 10
 LINE_color = (0, 0, 0)
 game_over = False
 connection_established = False
@@ -106,34 +107,19 @@ def restart():
             Broad[y][x] = 0
 
 
-
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
+        elif event.type == pygame.MOUSEBUTTONDOWN and not game_over:
             if check_win(2):
                 game_over = True
                 playing = 'False'
-                print('player2 win')
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE and game_over:
-                        game_over = False
-                        playing = 'True'
-                        restart()
-                    elif event.key == pygame.K_ESCAPE:
-                        running = False
+                key = str(input('player2 win\n Press space to continute'))
             if check_win(1):
                 game_over = True
                 playing = 'False'
-                print('player1 win')
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE and game_over:
-                        game_over = False
-                        playing = 'True'
-                        restart()
-                    elif event.key == pygame.K_ESCAPE:
-                        running = False
+                key = str(input('player2 win\n Press space to continute'))
             if pygame.mouse.get_pressed()[0]:
                 if turn and (playing == 'True'):
                     pos = pygame.mouse.get_pos()
@@ -148,23 +134,14 @@ while running:
                         if check_win(2):
                             game_over = True
                             playing = 'False'
-                            print('player2 win')
-                            if event.type == pygame.KEYDOWN:
-                                if event.key == pygame.K_SPACE and game_over:
-                                    game_over = False
-                                    playing = 'True'
-                                    restart()
-                                elif event.key == pygame.K_ESCAPE:
-                                    running = False
+                            key = str(input('player2 win\n Press space to continute'))
                         if check_win(1):
                             game_over = True
                             playing = 'False'
-                            print('player1 win')
-                            if event.type == pygame.KEYDOWN:
-                                if event.key == pygame.K_SPACE and game_over:
-                                    game_over = False
-                                    playing = 'True'
-                                    restart()
-                                elif event.key == pygame.K_ESCAPE:
-                                    running = False
+                            key = str(input('player1 win\n Press space to continute'))
+        if event.type == pygame.KEYDOWN:
+            if event.type == pygame.key and game_over:
+                game_over = False
+                playing = 'True'
+                restart()
     pygame.display.update()

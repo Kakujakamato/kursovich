@@ -18,6 +18,7 @@ POSITION_Y_ON_BROAD = 100
 THIN_LEVER_OF_LINES = 2
 START_POSITION = 0
 END_POSITION = 400
+COUNT_DOWN_TIME = 10
 LINE_color = (0, 0, 0)
 game_over = False
 connection_established = False
@@ -113,11 +114,15 @@ def restart():
         for x in range(len(Broad[1])):
             Broad[y][x] = 0
 
-
-
-    
-   
-
+def re_play(K_SPACE):
+    global game_over,playing
+    if event.type == pygame.KEYDOWN:
+        if event.type == pygame.K_ESCAPE and game_over:
+            game_over = False
+            playing = 'True'
+            return True
+        else:
+            return False
 
 while running:
     for event in pygame.event.get():
@@ -127,25 +132,11 @@ while running:
             if check_win(1):
                 game_over = True
                 playing = 'False'
-                print('player1 win')
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE and game_over:
-                        game_over = False
-                        playing = 'True'
-                        restart()
-                    elif event.key == pygame.K_ESCAPE:
-                        running = False
+                key = str(input('player1 win\n Press space to continute'))
             if check_win(2):
                 game_over = True
                 playing = 'False'
-                print('player2 win')
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE and game_over:
-                        game_over = False
-                        playing = 'True'
-                        restart()
-                    elif event.key == pygame.K_ESCAPE:
-                        running = False
+                key = str(input('player2 win\n Press space to continute'))
             if pygame.mouse.get_pressed()[0]:
                 if turn and (playing == 'True'):
                     pos = pygame.mouse.get_pos()
@@ -153,31 +144,20 @@ while running:
                     if Broad[cellY][cellX] == 0:
                         Broad[cellY][cellX] = player
                         screen.blit(letterX, (cellX*100, cellY*100))
-                        send_data = '{}-{}-{}-{}'.format(
-                            cellX, cellY, 'yourturn', playing).encode()
+                        send_data = '{}-{}-{}-{}'.format(cellX, cellY, 'yourturn', playing).encode()
                         conn.send(send_data)
                         turn = False
                         if check_win(1):
                             game_over = True
                             playing = 'False'
-                            print('player1 win')
-                            if event.type == pygame.KEYDOWN:
-                                if event.key == pygame.K_SPACE and game_over:
-                                    game_over = False
-                                    playing = 'True'
-                                    restart()
-                                elif event.key == pygame.K_ESCAPE:
-                                    running = False
+                            key = str(input('player1 win\n Press space to continute'))
                         if check_win(2):
                             game_over = True
                             playing = 'False'
-                            print('player2 win')
-                            if event.type == pygame.KEYDOWN:
-                                if event.key == pygame.K_SPACE and game_over:
-                                    game_over = False
-                                    playing = 'True'
-                                    restart()
-                                elif event.key == pygame.K_ESCAPE:
-                                    running = False
-
+                            key = str(input('player2 win\n Press space to continute'))
+        if event.type == pygame.KEYDOWN:
+            if event.type == pygame.key and game_over:
+                game_over = False
+                playing = 'True'
+                restart()
     pygame.display.update()
