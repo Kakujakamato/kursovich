@@ -1,11 +1,9 @@
 import pygame
-import sys
 import numpy as np
 import os
 import threading
 import socket
 
-os.environ['SDL_VIDEO_WINDOW_POS'] = '400,100'
 
 # Address host.
 HOST = '192.168.33.1'

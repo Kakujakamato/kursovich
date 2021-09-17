@@ -1,10 +1,10 @@
 import pygame
-import sys
 import numpy as np
 import os
 import threading
 import socket
-os.environ['SDL_VIDEO_WINDOW_POS'] = '400,100'
+
+
 
 HOST = '192.168.33.1'
 PORT = 55555
@@ -38,7 +38,7 @@ sock.connect((HOST, PORT))
 
 
 def receive_data():
-    global turn
+    global turn,game_over
     while True:
         data = sock.recv(1024).decode()
         data = data.split('-')
