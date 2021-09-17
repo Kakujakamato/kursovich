@@ -116,15 +116,16 @@ def restart():
             Broad[y][x] = 0
 
 
-def askforreplay(game_over):
+def askforreplay(playing, game_over, running):
     print('Press Space to continute')
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_SPACE and game_over:
             game_over = False
             playing = 'True'
             restart()
-        # elif event.key == pygame.K_ESCAPE:
-        #     running = False
+        elif event.key == pygame.K_ESCAPE:
+            running = False
+    return (game_over,playing,running)
 
 
 while running:
@@ -136,12 +137,12 @@ while running:
                 game_over = True
                 playing = 'False'
                 print('player1 win')
-                askforreplay(playing, game_over, running)
+                askforreplay(playing, game_over, running) = playing,game_over,running
             if check_win(2):
                 game_over = True
                 playing = 'False'
                 print('player2 win')
-                askforreplay(playing, game_over, running)
+                askforreplay(playing, game_over, running) = playing,game_over,running
             if pygame.mouse.get_pressed()[0]:
                 if turn and (playing == 'True'):
                     pos = pygame.mouse.get_pos()
@@ -157,11 +158,11 @@ while running:
                             game_over = True
                             playing = 'False'
                             print('player1 win')
-                            askforreplay(playing, game_over, running)
+                            askforreplay(playing, game_over, running) = playing,game_over,running
                         if check_win(2):
                             game_over = True
                             playing = 'False'
                             print('player2 win')
-                            askforreplay(playing, game_over, running)
+                            askforreplay(playing, game_over, running) = playing,game_over,running
 
     pygame.display.update()
