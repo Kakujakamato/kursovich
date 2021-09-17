@@ -27,19 +27,19 @@ playing = 'True'
 
 
 def create_thread(target):
-    thread = threading.Thread(target=target)
+    thread = threading.Thread(target=target) #control the fdata form sever
     thread.daemon = True
     thread.start()
 
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.connect((HOST, PORT))
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # af_inet is the ipv4 for socket, TCP in socket use stream
+sock.connect((HOST, PORT)) #get ip of the sever to conect
 
 
 def receive_data():
     global turn,game_over
     while True:
-        data = sock.recv(1024).decode()
+        data = sock.recv(1024).decode() # 1024 is the size of data limittion
         data = data.split('-')
         x, y = int(data[0]), int(data[1])
         if data[2] == 'yourturn':
@@ -103,7 +103,7 @@ def restart():
     Draw_lines()
     for y in range(len(Broad)):
         for x in range(len(Broad[1])):
-            Broad[y][x] = 0
+            Broad[y][x] = 0 # set all squel back to 0
 
 
 while running:
