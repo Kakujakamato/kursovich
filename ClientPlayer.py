@@ -115,8 +115,8 @@ def askforreplay(playing, game_over, running):
             game_over = False
             playing = 'True'
             restart()
-        elif event.key == pygame.K_ESCAPE:
-            running = False
+        # elif event.key == pygame.K_ESCAPE:
+        #     running = False
 
 
 while running:
