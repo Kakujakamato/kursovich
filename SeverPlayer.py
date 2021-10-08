@@ -111,15 +111,15 @@ def restart():
         for x in range(len(Broad[1])):
             Broad[y][x] = 0
 
-def re_play():
-    global game_over,playing
-    if event.type == pygame.KEYDOWN:
-        if event.type == pygame.K_ESCAPE and game_over:
-            game_over = False
-            playing = 'True'
-            return True
-        else:
-            return False
+# def re_play():
+#     global game_over,playing
+#     if event.type == pygame.KEYDOWN:
+#         if event.type == pygame.K_ESCAPE and game_over:
+#             game_over = False
+#             playing = 'True'
+#             return True
+#         else:
+#             return False
 
 while running:
     for event in pygame.event.get():
