@@ -5,7 +5,7 @@ import threading
 import socket
 
 #constant
-HOST = '192.168.33.1' # Address host.
+# Address host.
 PORT = 55555
 BG_COLOR = (30, 145, 150)
 BROAD_COL = 4
@@ -33,7 +33,7 @@ def create_thread(target):
 
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.bind((HOST, PORT))
+sock.bind((socket.gethostname(), PORT))
 sock.listen(1)
 
 

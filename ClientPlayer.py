@@ -5,7 +5,6 @@ import threading
 import socket
 
 #constant
-HOST = '192.168.33.1'
 PORT = 55555
 BG_COLOR = (30, 145, 150)
 BROAD_COL = 4
@@ -33,7 +32,7 @@ def create_thread(target):
 
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # af_inet is the ipv4 for socket, TCP in socket use stream
-sock.connect((HOST, PORT)) #get ip of the sever to conect
+sock.connect((socket.gethostname(), PORT)) #get ip of the sever to conect
 
 
 def receive_data():
