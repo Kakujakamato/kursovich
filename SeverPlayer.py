@@ -67,7 +67,7 @@ create_thread(waiting_for_connection)
 letterX = pygame.image.load(os.path.join('Imgfile', 'letterx.png'))
 letterO = pygame.image.load(os.path.join('Imgfile', 'lettero.png'))
 screen = pygame.display.set_mode((400, 400))
-pygame.display.set_caption("Game Sever")
+pygame.display.set_caption("Game Sever - Player 1")
 screen.fill(BG_COLOR)
 Broad = np.zeros((BROAD_ROW, BROAD_COL))
 
