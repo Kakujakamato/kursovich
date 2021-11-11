@@ -128,6 +128,10 @@ while running:
                         send_data = '{}-{}-{}-{}'.format(cellX, cellY, 'yourturn', playing).encode()
                         sock.send(send_data)
                         turn = False
+            for y in range(len(Broad)):
+                for x in range(len(Broad[1])):
+                    if (Broad[y][x] == 1) and game_over:
+                        print('Draw\n Press space to continute')
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and game_over:
                 restart()
