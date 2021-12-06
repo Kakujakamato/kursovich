@@ -38,7 +38,7 @@ sock.listen(1)
 
 
 def receive_data():
-    global turn
+    global turn,game_over
     while True:
         data = conn.recv(1024).decode()
         data = data.split('-')
