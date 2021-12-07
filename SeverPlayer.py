@@ -1,10 +1,11 @@
+from ctypes import windll
 import pygame
 import numpy as np
 import os
 import threading
 import socket
 
-#constant
+# constant
 # Address host.
 PORT = 55555
 BG_COLOR = (30, 145, 150)
@@ -38,7 +39,7 @@ sock.listen(1)
 
 
 def receive_data():
-    global turn,game_over
+    global turn, game_over
     while True:
         data = conn.recv(1024).decode()
         data = data.split('-')
@@ -104,6 +105,18 @@ def Draw_lines():
 Draw_lines()
 
 
+def WinCondition():
+    if check_win(2):
+        game_over = True
+        playing = 'False'
+        print('player2 win\n Press space to continute')
+    if check_win(1):
+        game_over = True
+        playing = 'False'
+        print('player1 win\n Press space to continute')
+    return(game_over, playing)
+
+
 def restart():
     screen.fill(BG_COLOR)
     Draw_lines()
@@ -111,19 +124,13 @@ def restart():
         for x in range(len(Broad[1])):
             Broad[y][x] = 0
 
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN and connection_established:
-            if check_win(1):
-                game_over = True
-                playing = 'False'
-                print('player1 win\n Press space to continute')
-            if check_win(2):
-                game_over = True
-                playing = 'False'
-                print('player2 win\n Press space to continute')
+            WinCondition()
             if pygame.mouse.get_pressed()[0]:
                 if turn and (playing == 'True'):
                     pos = pygame.mouse.get_pos()
@@ -131,7 +138,8 @@ while running:
                     if Broad[cellY][cellX] == 0:
                         Broad[cellY][cellX] = player
                         screen.blit(letterX, (cellX*100, cellY*100))
-                        send_data = '{}-{}-{}-{}'.format(cellX, cellY, 'yourturn', playing).encode()
+                        send_data = '{}-{}-{}-{}'.format(
+                            cellX, cellY, 'yourturn', playing).encode()
                         conn.send(send_data)
                         turn = False
             else:
@@ -145,5 +153,5 @@ while running:
                 restart()
                 game_over = False
                 playing = 'True'
-                
+
     pygame.display.update()

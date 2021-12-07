@@ -4,7 +4,7 @@ import os
 import threading
 import socket
 
-#constant
+# constant
 PORT = 55555
 BG_COLOR = (30, 145, 150)
 BROAD_COL = 4
@@ -26,19 +26,20 @@ playing = 'True'
 
 
 def create_thread(target):
-    thread = threading.Thread(target=target) #control the fdata form sever
+    thread = threading.Thread(target=target)  # control the fdata form sever
     thread.daemon = True
     thread.start()
 
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # af_inet is the ipv4 for socket, TCP in socket use stream
-sock.connect((socket.gethostname(), PORT)) #get ip of the sever to conect
+# af_inet is the ipv4 for socket, TCP in socket use stream
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.connect((socket.gethostname(), PORT))  # get ip of the sever to conect
 
 
 def receive_data():
-    global turn,game_over
+    global turn, game_over
     while True:
-        data = sock.recv(1024).decode() # 1024 is the size of data limittion
+        data = sock.recv(1024).decode()  # 1024 is the size of data limittion
         data = data.split('-')
         x, y = int(data[0]), int(data[1])
         if data[2] == 'yourturn':
@@ -97,12 +98,24 @@ def Draw_lines():
 Draw_lines()
 
 
+def WinCondition():
+    if check_win(2):
+        game_over = True
+        playing = 'False'
+        print('player2 win\n Press space to continute')
+    if check_win(1):
+        game_over = True
+        playing = 'False'
+        print('player1 win\n Press space to continute')
+    return(game_over, playing)
+
+
 def restart():
     screen.fill(BG_COLOR)
     Draw_lines()
     for y in range(len(Broad)):
         for x in range(len(Broad[1])):
-            Broad[y][x] = 0 # set all squel back to 0
+            Broad[y][x] = 0  # set all squel back to 0
 
 
 while running:
@@ -110,14 +123,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
-            if check_win(2):
-                game_over = True
-                playing = 'False'
-                print('player2 win\n Press space to continute')
-            if check_win(1):
-                game_over = True
-                playing = 'False'
-                print('player1 win\n Press space to continute')
+            WinCondition()
             if pygame.mouse.get_pressed()[0]:
                 if turn and (playing == 'True'):
                     pos = pygame.mouse.get_pos()
@@ -125,7 +131,8 @@ while running:
                     if Broad[cellY][cellX] == 0:
                         Broad[cellY][cellX] = player
                         screen.blit(letterO, (cellX*100, cellY*100))
-                        send_data = '{}-{}-{}-{}'.format(cellX, cellY, 'yourturn', playing).encode()
+                        send_data = '{}-{}-{}-{}'.format(
+                            cellX, cellY, 'yourturn', playing).encode()
                         sock.send(send_data)
                         turn = False
             else:
