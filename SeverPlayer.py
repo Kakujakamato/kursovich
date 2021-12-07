@@ -106,6 +106,7 @@ Draw_lines()
 
 
 def WinCondition():
+    global game_over,playing
     if check_win(2):
         game_over = True
         playing = 'False'
