@@ -31,7 +31,7 @@ def create_thread(target):
     thread.start()
 
 
-# af_clinet is the ipv4 for socket, TCP in socket use stream
+# af_client is the ipv4 for socket, TCP in socket use stream
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((socket.gethostname(), PORT))  # get ip of the sever to connect
 
