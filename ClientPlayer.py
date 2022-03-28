@@ -26,7 +26,7 @@ playing = 'True'
 
 
 def create_thread(target):
-    thread = threading.Thread(target=target)  # control the fdata form sever
+    thread = threading.Thread(target=target)  # control the of data form sever
     thread.daemon = True
     thread.start()
 
