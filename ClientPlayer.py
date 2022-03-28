@@ -31,15 +31,15 @@ def create_thread(target):
     thread.start()
 
 
-# af_inet is the ipv4 for socket, TCP in socket use stream
+# af_clinet is the ipv4 for socket, TCP in socket use stream
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.connect((socket.gethostname(), PORT))  # get ip of the sever to conect
+sock.connect((socket.gethostname(), PORT))  # get ip of the sever to connect
 
 
 def receive_data():
     global turn, game_over
     while True:
-        data = sock.recv(1024).decode()  # 1024 is the size of data limittion
+        data = sock.recv(1024).decode()  # 1024 is the size of data limitation
         data = data.split('-')
         x, y = int(data[0]), int(data[1])
         if data[2] == 'yourturn':
