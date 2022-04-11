@@ -1,6 +1,7 @@
 import pygame
 import numpy as np
 import os
+os.environ['SDL_VIDEO_WINDOW_POS'] = '400'
 import threading
 import socket
 
